@@ -1,6 +1,8 @@
 package demo;
 
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 /*
 新增
@@ -44,18 +46,26 @@ public class SequencedCollectionDemo {
 
         SequencedMap<String, Integer> map = new LinkedHashMap<>();
 
+        map.putLast("C", 3);
         map.putFirst("A", 1);
         map.putLast("B", 2);
-        map.putLast("C", 3);
+
 
         System.out.println(map.firstEntry()); // A=1
         System.out.println(map.lastEntry());  // C=3
 
 
-        map.pollFirstEntry();
-        map.pollLastEntry();
+//        map.pollFirstEntry();
+//        map.pollLastEntry();
 
         System.out.println(map); // {B=2}
+
+        map.forEach(new BiConsumer<>(){
+            @Override
+            public void accept(String s, Integer integer) {
+                System.out.println(s+","+integer);
+            }
+        });
 
 
 
